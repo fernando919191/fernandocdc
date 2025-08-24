@@ -3,7 +3,7 @@ import { PREFIX } from "../funcionamiento/config.js";
 
 export default {
   name: "bin",
-  description: "Revisa información de un BIN",
+  description: "Revisa información de un BIN usando HandyAPI",
   prefix: PREFIX,
   async execute(bot, msg) {
     const parts = msg.text.split(" ");
@@ -13,8 +13,14 @@ export default {
       return bot.sendMessage(msg.chat.id, "❌ Debes colocar /bin seguido de un BIN numérico de al menos 6 dígitos.");
     }
 
+    // ⚠️ Pega aquí tu API Key de HandyAPI
+    const HANDYAPI_KEY = "TU_API_KEY";
+
     try {
-      const res = await fetch(`https://data.handyapi.com/bin/${bin_input}`);
+      const res = await fetch(`https://data.handyapi.com/bin/${bin_input}`, {
+        headers: { "x-api-key": HANDYAPI_KEY }
+      });
+
       const api = await res.json();
 
       if (api.Status === "SUCCESS") {
