@@ -1,2 +1,2 @@
 // ⚠️ Aquí pones tu token directamente para GitHub
-export const TOKEN = "TU_TOKEN_DE_TELEGRAM";
+export const TOKEN = "8288918054:AAHtby2p7AB9TfQtln3AiQmewSNiYG3Dul0";
