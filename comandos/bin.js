@@ -10,10 +10,9 @@ export default {
     const bin_input = parts[1];
 
     if (!bin_input || !/^\d{6,}$/.test(bin_input)) {
-      return bot.sendMessage(msg.chat.id, "❌ Debes colocar /bin seguido de un BIN numérico de al menos 6 dígitos.");
+      return bot.sendMessage(msg.chat.id, `❌ Usa: ${PREFIX}bin <BIN de al menos 6 dígitos>`);
     }
 
-    // ⚠️ Pega aquí tu API Key de HandyAPI
     const HANDYAPI_KEY = "HAS-0YK50VkxMB643qWR4mPrgdpT";
 
     try {
@@ -22,6 +21,9 @@ export default {
       });
 
       const api = await res.json();
+
+      // 👀 Debug: ver qué devuelve la API
+      console.log(api);
 
       if (api.Status === "SUCCESS") {
         const paisNombre = api.Country?.Name || "Desconocido";
@@ -40,7 +42,7 @@ País: ${paisNombre}
 Banco: ${banco}
         `);
       } else {
-        bot.sendMessage(msg.chat.id, "❌ Por favor, ingresa un BIN válido.");
+        bot.sendMessage(msg.chat.id, `❌ API respondió: ${api.Message || "BIN inválido o sin datos."}`);
       }
     } catch (e) {
       bot.sendMessage(msg.chat.id, `❌ Error al conectar con la API: ${e.message}`);
