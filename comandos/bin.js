@@ -6,13 +6,13 @@ export default {
   description: "Revisa información de un BIN usando HandyAPI",
   prefix: PREFIX,
   async execute(bot, msg) {
-    const parts = msg.text.split(" ");
-    const bin_input = parts[1];
+    const bin_input = msg.args[0]; // <-- ahora usamos msg.args
 
     if (!bin_input || !/^\d{6,}$/.test(bin_input)) {
       return bot.sendMessage(msg.chat.id, `❌ Usa: ${PREFIX}bin <BIN de al menos 6 dígitos>`);
     }
 
+    // ⚠️ Tu API Key de HandyAPI
     const HANDYAPI_KEY = "HAS-0YK50VkxMB643qWR4mPrgdpT";
 
     try {
@@ -21,9 +21,7 @@ export default {
       });
 
       const api = await res.json();
-
-      // 👀 Debug: ver qué devuelve la API
-      console.log(api);
+      console.log("📡 Respuesta API BIN:", api); // debug
 
       if (api.Status === "SUCCESS") {
         const paisNombre = api.Country?.Name || "Desconocido";
