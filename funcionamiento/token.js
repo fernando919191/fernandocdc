@@ -1,1 +1,2 @@
-export const TOKEN = process.env.BOT_TOKEN || "AQUI_TU_TOKEN";
+// ⚠️ Aquí pones tu token directamente para GitHub
+export const TOKEN = "TU_TOKEN_DE_TELEGRAM";
