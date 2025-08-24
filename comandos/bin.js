@@ -14,7 +14,7 @@ export default {
     }
 
     // ⚠️ Pega aquí tu API Key de HandyAPI
-    const HANDYAPI_KEY = "TU_API_KEY";
+    const HANDYAPI_KEY = "HAS-0YK50VkxMB643qWR4mPrgdpT";
 
     try {
       const res = await fetch(`https://data.handyapi.com/bin/${bin_input}`, {
