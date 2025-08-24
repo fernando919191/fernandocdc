@@ -19,8 +19,10 @@ for (const archivo of archivosComandos) {
   const { default: comando } = await import(path.join(comandosPath, archivo));
   comandos.push(comando);
 
-  // Registrar el comando con su prefijo
-  bot.onText(new RegExp(`^${comando.prefix}${comando.name}$`), (msg) => {
+  // RegEx mejorado: permite argumentos después del comando
+  bot.onText(new RegExp(`^\\${comando.prefix}${comando.name}(?:\\s+(.+))?`), (msg, match) => {
+    // Guardar argumentos dentro del mensaje
+    msg.args = match[1] ? match[1].split(" ") : [];
     comando.execute(bot, msg, comandos);
   });
 }
