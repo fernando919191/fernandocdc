@@ -1,2 +1,2 @@
 // ⚠️ Aquí pones tu token directamente para GitHub
-export const TOKEN = "8288918054:AAHtby2p7AB9TfQtln3AiQmewSNiYG3Dul0";
+export const TOKEN = "8249995379:AAEHfJkDSKj_BNHxjPRriwYKzNj7n7zTRto";
