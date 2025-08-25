@@ -28,3 +28,21 @@ for (const archivo of archivosComandos) {
 }
 
 console.log("🤖 Bot de Telegram en línea con comandos automáticos y prefijo...");
+
+// ----------------------
+// Manejo de botones (callback_query) - al final
+// ----------------------
+bot.on("callback_query", async (query) => {
+  try {
+    for (const comando of comandos) {
+      if (typeof comando.handleCallback === "function") {
+        await comando.handleCallback(bot, query);
+      }
+    }
+
+    // Responder al callback para quitar el spinner en Telegram
+    await bot.answerCallbackQuery(query.id);
+  } catch (error) {
+    console.error("Error al manejar callback_query:", error);
+  }
+});
